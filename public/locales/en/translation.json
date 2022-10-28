@@ -12,6 +12,10 @@
   "kinship": "Kinship",
   "email": "Email",
   "healthInsurance": "Beneficiary's Health Insurance'",
+  "relationShip":"Relationship",
+  "selectRelationShip":"Select the relationship",
   "male":"Male",
-  "female":"Female"
+  "female":"Female",
+  "requiredFlieds":"Insert the required fields",
+  "have_passport":"Do you have passport?"
 }

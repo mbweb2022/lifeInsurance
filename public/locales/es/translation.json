@@ -12,6 +12,12 @@
   "kinship": "Parentesco",
   "email": "Correo Electrónico",
   "healthInsurance": "Beneficiarios seguro médico",
+  "relationShip":"Parentesco",
+  "selectRelationShip":"Selecciona el Parentesco",
   "male":"Masculino",
-  "female":"Femenino"
+  "requiredFlieds":"Ingrese todos los campos requeridos",
+  "female":"Femenino",
+  "have_passport":"¿Cuéntas con un pasaporte?",
+  "passport_number":"Número de pasaporte"
+
 }
