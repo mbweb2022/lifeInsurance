@@ -17,5 +17,6 @@
   "male":"Male",
   "female":"Female",
   "requiredFlieds":"Insert the required fields",
-  "have_passport":"Do you have passport?"
+  "have_passport":"Do you have passport?",
+  "passport_number":"Passport number"
 }
