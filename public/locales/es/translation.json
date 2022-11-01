@@ -11,13 +11,15 @@
   "city": "Ciudad",
   "kinship": "Parentesco",
   "email": "Correo Electrónico",
-  "healthInsurance": "Beneficiarios seguro médico",
+  "healthInsurance": "Seguro de vida",
   "relationShip":"Parentesco",
   "selectRelationShip":"Selecciona el Parentesco",
   "male":"Masculino",
   "requiredFlieds":"Ingrese todos los campos requeridos",
   "female":"Femenino",
   "have_passport":"¿Cuéntas con un pasaporte?",
-  "passport_number":"Número de pasaporte"
+  "passport_number":"Número de pasaporte",
+  "JWT_EXPIRED":"El tiempo para llenar este formulario ha finalizado",
+  "JWT_INVALID":"Error inesperado, al validar las credenciales"
 
 }

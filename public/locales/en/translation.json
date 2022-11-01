@@ -11,12 +11,14 @@
   "city": "City",
   "kinship": "Kinship",
   "email": "Email",
-  "healthInsurance": "Beneficiary's Health Insurance'",
+  "healthInsurance": "Life Insurance",
   "relationShip":"Relationship",
   "selectRelationShip":"Select the relationship",
   "male":"Male",
   "female":"Female",
   "requiredFlieds":"Insert the required fields",
   "have_passport":"Do you have passport?",
-  "passport_number":"Passport number"
+  "passport_number":"Passport number",
+  "JWT_EXPIRED":"The time to fill out this form has ended",
+  "JWT_INVALID":"Something went wrong, with the credentials"
 }

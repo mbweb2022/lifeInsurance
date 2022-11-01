@@ -1,6 +1,10 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/form4.css";
+import Modal from "react-bootstrap/Modal";
+import Button from 'react-bootstrap/Button';
+
 const gender = [
   {
     key: "M",
@@ -34,6 +38,26 @@ const Formulario4 = () => {
     date: "",
   };
   const [state, dispatch] = useState(initialState);
+  const [mbt, setMbt] = useState(null);
+  const [isAviable, setIsAviable] = useState(true);
+
+  
+  const [showModal, setShowModal] = useState(false);
+  const [errorMessageCode, setErrorMessage] = useState("");
+
+  const useQuery = () => new URLSearchParams(window.location.search);
+
+  let query = useQuery();
+  useEffect(() => {
+    //  let mbt = query.get("mbt");
+
+    setMbt(query.get("mbt"));
+    initChckerPolize(query.get("mbt"));
+  }, []);
+  useEffect(() => {
+    console.log("moneyBlink mbt", mbt);
+  }, [mbt]);
+
   const relationShipData = [
     {
       key: "Father_Mother",
@@ -52,16 +76,94 @@ const Formulario4 = () => {
       value: "Familiar",
     },
   ];
+  const initChckerPolize = async (mbt) => {
+    try {
+      const response = await fetch(
+        "https://rjhi2d01ca.execute-api.us-east-1.amazonaws.com/production",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            mbt: mbt,
+            type: "life",
+          },
+        }
+      );
+      const responseJson = await response.json();
+      console.log("response", responseJson);
+      console.log("status", response.status);
 
-  const onSubmit = () => {
-    const isValid = validateValues(state.form, state.havePassport);
-    if (isValid) {
-      console.log("todo bien", isValid);
-    } else {
-      console.log("campos requeridos");
-      window.confirm(t("requiredFlieds"));
+      if (response.status != 200) {
+        setShowModal(true);
+        setIsAviable(false);
+        setErrorMessage(responseJson.messages[0].message);
+      }
+    } catch (e) {
+      console.error("error al realizar request", e);
     }
-    console.log("values to submit", state);
+  };
+  const onSubmit = async () => {
+    try {
+      const isValid = validateValues(state.form, state.havePassport);
+      if (isValid) {
+        console.log("todo bien", isValid);
+        const response = await axios.get(
+          "https://rjhi2d01ca.execute-api.us-east-1.amazonaws.com/production",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log("response", response);
+        /*const response = await fetch(
+          "https://rjhi2d01ca.execute-api.us-east-1.amazonaws.com/production",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+              "Access-Control-Allow-Headers":
+                "Content-Type, Authorization, X-Requested-With",
+              mbt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyYzk3NzhiZC00ZTEzLTRhNjYtYmFlYy00MzRlMTRmYTFkZjYiLCJjb2RlSUQiOiJkZGQwOTBiMC01YjY0LTRjMGUtYjViNi0zZWVhOWZhNTQ4MDMiLCJpYXQiOjE2NjcyMzIzMzAsImV4cCI6MTY2NzQ5MTUzMH0.qnl2Z6h3_GzIFHJa6j4-CcJrkUQI5HV4d4Dzdp8KJ8Q",
+              type: "medical",
+            },
+          }
+        );
+        //const responseJson = await response.json();
+        console.log("response status", response.status);
+        //   console.log("respuesta ne json", responseJson);*/
+        /*var myHeaders = new Headers();
+        myHeaders.append(
+          "mbt",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyYzk3NzhiZC00ZTEzLTRhNjYtYmFlYy00MzRlMTRmYTFkZjYiLCJjb2RlSUQiOiJkZGQwOTBiMC01YjY0LTRjMGUtYjViNi0zZWVhOWZhNTQ4MDMiLCJpYXQiOjE2NjcyMzIzMzAsImV4cCI6MTY2NzQ5MTUzMH0.qnl2Z6h3_GzIFHJa6j4-CcJrkUQI5HV4d4Dzdp8KJ8Q"
+        );
+        myHeaders.append("type", "medical");
+
+        var requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+        
+         
+        };
+
+        fetch(
+          "https://rjhi2d01ca.execute-api.us-east-1.amazonaws.com/production",
+          requestOptions
+        )
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .catch((error) => console.log("error", error));*/
+      } else {
+        console.log("campos requeridos");
+        window.confirm(t("requiredFlieds"));
+      }
+      console.log("values to submit", state);
+    } catch (e) {
+      console.log("error al enviar data ", e);
+    }
   };
   const validateValues = (values, havePassport) => {
     /* if(!havePassport){
@@ -331,9 +433,9 @@ const Formulario4 = () => {
             </div>
             <div className="row row-space">
               <div className="col-2">
-                <div class="form-check">
+                <div className="form-check">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     value=""
                     checked={state.havePassport}
@@ -351,7 +453,7 @@ const Formulario4 = () => {
                       dispatch(init);
                     }}
                   />
-                  <label class="form-check-label" for="flexCheckDefault">
+                  <label className="form-check-label" for="flexCheckDefault">
                     {t("have_passport")}
                   </label>
                 </div>
@@ -381,6 +483,7 @@ const Formulario4 = () => {
             <div className="p-t-15">
               <button
                 className="btn btn--radius-2 btn--blue"
+                disabled={!isAviable}
                 onClick={() => {
                   onSubmit();
                 }}
@@ -391,6 +494,15 @@ const Formulario4 = () => {
           </div>
         </div>
       </div>
+      <Modal show={showModal} onHide={()=>{setShowModal(false);}}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{t(errorMessageCode)}</Modal.Body>
+        <Modal.Footer>
+         
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
