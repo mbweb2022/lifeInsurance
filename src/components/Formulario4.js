@@ -196,17 +196,17 @@ const Formulario4 = () => {
             nationality: "ecuatoriano",
           },
           beneficiary: {
-            firstName: "Ejemplo", //
-            secondName: "Ejemplo2", //
-            lastName: "Ejemplo3", //
-            secondLastName: "Ejemplo4", //
-            identification: "ejemplo5", //
+            firstName: "", //
+            secondName: "", //
+            lastName: "", //
+            secondLastName: "", //
+            identification: "", //
             passport: "null", //
-            nationality: "ejemplo5",
-            kinship: "ejemplo5", //
-            birthDate: "ejemplo5", //
-            code: "ejemplo5",
-            codeDate: "ejemplo5",
+            nationality: "",
+            kinship: "", //
+            birthDate: "", //
+            code: "",
+            codeDate: "",
           },
         },
       },
@@ -216,11 +216,15 @@ const Formulario4 = () => {
         ...transaction.dataSend.data.beneficiary,
         ...state.form,
       };
+      transaction.dataSend.data.beneficiary.code=userInsuredData.code.id.S;
+
+      /*transaction.dataSend.data.beneficiary.codeDate= ;*/
       transaction.dataSend.data = {
         ...transaction.dataSend.data,
         ...{
           insuredID: userInsuredData.mbUser.id.S,
           code: userInsuredData.code.id.S,
+          
         },
       };
       transaction.dataSend.data.insured = {
@@ -233,6 +237,9 @@ const Formulario4 = () => {
           nationality: state.formInsured.nationality,
         },
       };
+
+
+
       transaction.result = true;
     } else {
       transaction.result = false;
