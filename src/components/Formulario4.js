@@ -216,6 +216,7 @@ const Formulario4 = () => {
         ...transaction.dataSend.data.beneficiary,
         ...state.form,
       };
+      
       transaction.dataSend.data.beneficiary.code=userInsuredData.code.id.S;
 
       /*transaction.dataSend.data.beneficiary.codeDate= ;*/
