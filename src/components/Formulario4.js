@@ -105,8 +105,8 @@ const Formulario4 = () => {
         }
       );
       const responseJson = await response.json();
-      console.log("response", responseJson);
-      console.log("status", response.status);
+      //console.log("response", responseJson);
+      //console.log("status", response.status);
 
       if (response.status == 200) {
         setIsAviable(true);
@@ -125,7 +125,7 @@ const Formulario4 = () => {
     try {
       const isValid = validateValues(state.form, state.havePassport);
       if (isValid) {
-        console.log("todo bien", isValid);
+        //console.log("todo bien", isValid);
 
         const txData = fillDataJsonApi();
         if (txData.result) {
@@ -143,11 +143,11 @@ const Formulario4 = () => {
             }
           );
           const responseJson = await response.json();
-          console.log("responseJson send", responseJson);
+          //console.log("responseJson send", responseJson);
           if (response.status == 200) {
             setSuccesfulModal(true);
             setIsAviable(false);
-            console.log("response 200", responseJson);
+            //console.log("response 200", responseJson);
           } else {
             setIsAnError(true);
             setErrorMessage(responseJson.messages[0].message);
@@ -155,19 +155,19 @@ const Formulario4 = () => {
           }
         }
       } else {
-        console.log("campos requeridos");
+        //console.log("campos requeridos");
         window.confirm(t("requiredFlieds"));
       }
-      console.log("values to submit", state);
+      //console.log("values to submit", state);
     } catch (e) {
       setErrorMessage("unexpected_Error");
       setIsAnError(true);
       setIsAviable(false);
-      console.log("error al enviar data ", e);
+      //console.log("error al enviar data ", e);
     }
   };
   const validateValues = (values, havePassport) => {
-    console.log(state);
+    //console.log(state);
     const keys = Object.keys(values);
     for (let i = 0; i < keys.length; i++) {
       if (havePassport) {
@@ -237,8 +237,8 @@ const Formulario4 = () => {
     } else {
       transaction.result = false;
     }
-    console.log("datoa send filled", transaction);
-    console.log("userInsuredData ", userInsuredData);
+    //console.log("datoa send filled", transaction);
+    //console.log("userInsuredData ", userInsuredData);
     return transaction;
   };
   const handleCloseSuccess = () => {
