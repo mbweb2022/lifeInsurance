@@ -20,6 +20,13 @@
   "have_passport":"¿Cuéntas con un pasaporte?",
   "passport_number":"Número de pasaporte",
   "JWT_EXPIRED":"El tiempo para llenar este formulario ha finalizado",
-  "JWT_INVALID":"Error inesperado, al validar las credenciales"
+  "JWT_INVALID":"Error inesperado al validar las credenciales",
+  "ACTIVE_POLICY":"Usted ya cuenta con una póliza activa",
+  "nacionalityInsured":"Nacionalidad del asegurador",
+  "unexpected_Error":"Ha ocurrido un error inesperado, intentelo mas tarde",
+  "great":"Genial!",
+  "data_submitted":"Tu información ha sido enviada con éxito.",
+  "beneficiary":"Beneficiario",
+  "something_wrong": "UH! OH! Algo ha salido mal"
 
 }

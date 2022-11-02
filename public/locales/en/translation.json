@@ -20,5 +20,14 @@
   "have_passport":"Do you have passport?",
   "passport_number":"Passport number",
   "JWT_EXPIRED":"The time to fill out this form has ended",
-  "JWT_INVALID":"Something went wrong, with the credentials"
+  "JWT_INVALID":"Something went wrong, with the credentials",
+  "ACTIVE_POLICY":"You already have an active policy",
+  "nacionalityInsured":"Nationality of the insurer",
+  "unexpected_Error":"An unexpected error has occurred",
+  "great":"Great!",
+  "data_submitted":"Your information has been submitted successfully.",
+  "beneficiary":"Beneficiary",
+  "something_wrong": "UH OH! Something went wrong."
+
+
 }
