@@ -30,6 +30,7 @@ const Formulario4 = () => {
       secondLastName: "",
       birthDate: "",
       kinship: "",
+      nationality:"",
       phoneNumber: "",
       passport: "",
       gender: "",
@@ -311,10 +312,37 @@ const Formulario4 = () => {
                         readOnly={!isAviable}
                         onChange={(e) => {
                           const init = {
+                            
                             ...state,
                             form: {
                               ...state.form,
                               identification: e.target.value,
+                            },
+                          };
+                          dispatch(init);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-2">
+                    <div className="input-group">
+                      <label className="label">{t("nationality")}</label>
+                      <input
+                        required
+                      
+                        className="input--style-4"
+                        type="text"
+                   
+                        name="nationality"
+                        value={state.form.nationality}
+                        readOnly={!isAviable}
+                        onChange={(e) => {
+                          const init = {
+                            
+                            ...state,
+                            form: {
+                              ...state.form,
+                              nationality: e.target.value,
                             },
                           };
                           dispatch(init);
